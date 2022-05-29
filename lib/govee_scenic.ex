@@ -10,7 +10,8 @@ defmodule GoveeScenic do
     # start the application with the viewport
     children = [
       {Scenic, [main_viewport_config]},
-      GoveeScenic.PubSub.Supervisor
+      GoveeScenic.PubSub.Supervisor,
+      {ScenicLiveReload, viewports: [main_viewport_config]}
     ]
 
     Supervisor.start_link(children, strategy: :one_for_one)
