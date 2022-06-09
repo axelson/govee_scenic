@@ -7,14 +7,6 @@ defmodule GoveeScenic.Scene.Home do
   import Scenic.Primitives
   # import Scenic.Components
 
-  @note """
-    This is a very simple starter application.
-
-    If you want a more full-on example, please start from:
-
-    mix scenic.new.example
-  """
-
   @text_size 24
 
   # ============================================================================
@@ -26,21 +18,22 @@ defmodule GoveeScenic.Scene.Home do
     # a transparent full-screen rectangle to catch user input
     {width, height} = scene.viewport.size
 
-    # show the version of scenic and the glfw driver
-    scenic_ver = Application.spec(:scenic, :vsn) |> to_string()
-    driver_ver = Application.spec(:scenic_driver_local, :vsn) |> to_string()
-
-    info = "scenic: v#{scenic_ver}\nscenic_driver_local: v#{driver_ver}"
+    center_x = width / 2
+    center_y = height / 3
 
     graph =
       Graph.build(font: :roboto, font_size: @text_size)
-      |> add_specs_to_graph([
-        text_spec(info, translate: {20, 40}),
-        text_spec(@note, translate: {20, 120}),
-        rect_spec({width, height})
-      ])
+      |> add_specs_to_graph(
+        [
+          rect_spec({width, height}),
+          ray_specs({center_x, center_y}),
+          rect_spec({50, 70}, fill: :gray, t: {center_x - 50 / 2, center_y + 60}),
+          circle_spec(90, fill: :yellow, t: {center_x, center_y})
+        ]
+        |> List.flatten()
+      )
 
-    scene = push_graph( scene, graph )
+    scene = push_graph(scene, graph)
 
     {:ok, scene}
   end
@@ -48,5 +41,21 @@ defmodule GoveeScenic.Scene.Home do
   def handle_input(event, _context, scene) do
     Logger.info("Received event: #{inspect(event)}")
     {:noreply, scene}
+  end
+
+  defp ray_specs({center_x, center_y}) do
+    {ray_length, ray_width} = {50, 15}
+
+    interval = :math.pi / 6
+    rotations = Enum.map(-1..6, & &1 * interval + :math.pi / 12)
+
+    Enum.map(rotations, fn rotation ->
+      rect_spec({ray_length, ray_width},
+        fill: :yellow,
+        t: {center_x - 175, center_y - ray_width / 2},
+        rotate: rotation,
+        pin: {center_x - 225, center_y - 200 + ray_width / 2}
+      )
+    end)
   end
 end
