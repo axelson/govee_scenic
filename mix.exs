@@ -15,7 +15,7 @@ defmodule GoveeScenic.MixProject do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
-      mod: {GoveeScenic, []},
+      mod: {GoveeScenicApplication, []},
       extra_applications: [:crypto]
     ]
   end
@@ -23,7 +23,9 @@ defmodule GoveeScenic.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:scenic, "~> 0.11.0-beta.0"},
+      # {:scenic, "~> 0.11.0-beta.0"},
+      {:scenic, github: "boydm/scenic", branch: "v0.11", override: true},
+      # {:scenic, path: "~/dev/forks/scenic", override: true},
       {:scenic_driver_local, "~> 0.11.0-beta.0"},
       # {:scenic_live_reload, github: "axelson/scenic_live_reload", ref: "wip-v0.11", only: :dev},
       {:scenic_live_reload, path: "~/dev/scenic_live_reload", only: :dev},
