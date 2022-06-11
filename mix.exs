@@ -23,6 +23,9 @@ defmodule GoveeScenic.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
+      {:phoenix_pubsub, "~> 2.1"},
+      {:typed_struct, "~> 0.2"},
+      {:govee, path: "~/dev/govee"},
       # {:scenic, "~> 0.11.0-beta.0"},
       {:scenic, github: "boydm/scenic", branch: "v0.11", override: true},
       # {:scenic, path: "~/dev/forks/scenic", override: true},

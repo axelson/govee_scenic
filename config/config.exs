@@ -13,7 +13,7 @@ config :govee_scenic, :viewport, [
   name: :main_viewport,
   size: {800, 600},
   theme: :dark,
-  default_scene: GoveeScenic.Scene.Home,
+  default_scene: {GoveeScenic.Scene.Home, topic: "default_window"},
   drivers: [
     [
       module: Scenic.Driver.Local,
