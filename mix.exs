@@ -25,11 +25,11 @@ defmodule GoveeScenic.MixProject do
     [
       {:phoenix_pubsub, "~> 2.1"},
       {:typed_struct, "~> 0.2"},
-      {:govee, path: "~/dev/govee"},
-      # {:scenic, "~> 0.11.0-beta.0"},
-      {:scenic, github: "boydm/scenic", branch: "v0.11", override: true},
+      # {:govee, path: "~/dev/govee"},
+      {:govee, github: "axelson/govee", branch: "new-update"},
+      {:scenic, "~> 0.11"},
       # {:scenic, path: "~/dev/forks/scenic", override: true},
-      {:scenic_driver_local, "~> 0.11.0-beta.0"},
+      {:scenic_driver_local, "~> 0.11"},
       # {:scenic_live_reload, github: "axelson/scenic_live_reload", ref: "wip-v0.11", only: :dev},
       {:scenic_live_reload, path: "~/dev/scenic_live_reload", only: :dev},
     ]

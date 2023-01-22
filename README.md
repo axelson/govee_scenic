@@ -1,4 +1,4 @@
-Readme text goes here
+Provides a Scenic view to represent a mocked Govee bulb
 
-
-From template
+TODO:
+- [ ] clean code
